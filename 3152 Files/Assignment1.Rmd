@@ -1,0 +1,51 @@
+---
+title: "Assignment 1"
+output:
+  pdf_document: default
+  html_document: default
+date: "2023-04-08"
+---
+
+# Task1
+
+## Task1.a
+The dimension of the sample data is 40000x56, 40000 rows and 56 columns, the data
+is recorded in ordinal data with most of them representing qualitative values and
+only 2 of them with no specific ordering. Out of all the variables, only one 
+of the variable Coded country is non-numerical, it will instead take in Characters
+representing the name of the country.
+
+*Taken from the provided pdf and checking the min,max values to confirm:
+The following are categorical ordinal data with numerical values to represent qualitative ordered values:
+The Affect columns which start with "aff" are all numerical discrete data that 
+ranges from 1 to 5 to show very slightly to extremely, likelihood ("PLRAC and PLRAE") 
+is similar with a range of 1 to 8, Societal Discontent ("disc") with a range of -2 to 2, 
+Job insecurity ("jbInsec") with a range of -2 to 2, Employment status ("emplostatus")
+are split into multiple different categories each representing a range of hours worked,
+Perceived financial status ("PFS") with a range of -2 to 2, Disempowerment ("fail") 
+with a range of -2 to 2, Lift satisfaction is split into three ("happy, lifeSat, MLQ)
+which ranges from 1 to 10, 1 to 6 and -3 to 3 respectively, Corona Community Injunctive
+("c19Norm" and "c19") ranging from value of -3 to 3 and 1 to 6, Trust in Government ("trustGov")
+ranging from 1 to 5, Age ("age") to represent the categorical age of the person ranging
+from 1 to 8, Covid ProSocial Behaviour to see if that particular person is willing 
+to help ("c19ProSo") in multiple different categories ranges from -3 to 3.
+
+Next are for ordinal data that does not have a specific order:
+Gender ("gender") ranging from 1 to 3 representing female, male and others,
+Coded country ("coded_country") to represent the country they are from (non-numerical).
+
+
+
+```{r}
+setwd("D:/Desktop/R files/3152 Files")
+set.seed(32210213) 
+cvbase = read.csv("PsyCoronaBaselineExtract.csv")
+cvbase <- cvbase[sample(nrow(cvbase), 40000), ] # 40000 rows
+# getting the dimension
+dim(cvbase)
+# checking how many columns are numerical attributes and how many are categorical
+head(cvbase)
+cvbase[,"coded_country"]
+max(na.omit(cvbase[,"c19ProSo01"]))
+min(na.omit(cvbase[,"c19ProSo01"]))
+```
