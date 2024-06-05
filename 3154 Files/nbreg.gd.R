@@ -1,6 +1,4 @@
-# FIT3154 Assignment 2
 # Gradient descent for negative binomial regression models
-# Skeleton code
 nbreg.gd <- function(X, y, r = 1, kappa = 1, max.grad = 1e-3)
 {
   #########################
@@ -18,8 +16,6 @@ nbreg.gd <- function(X, y, r = 1, kappa = 1, max.grad = 1e-3)
   rownames(beta) = colnames(X)
 
   L.path = c()
-  #########################
-  # Your gradient descent code goes here ...
 
   func_res = func.2.6(y,X,beta0,beta,r)
   L.cur = func_res$negative.log.likelihood
@@ -51,20 +47,16 @@ nbreg.gd <- function(X, y, r = 1, kappa = 1, max.grad = 1e-3)
   }
   
   
-  # ...
-
-  # Unstandardise the final estimates (transform back to original scale of predictors)
   beta <- beta / t(stdX$stdX)
   beta0 <- beta0 - stdX$meanX %*% beta
   
-  # Done - return results
   # Return estimated beta's, neg-log-likelihood of model and gradient
   #   beta.hat     = your estimates for beta
   #   beta0.hat    = your estimate for beta0 (intercept)
   #   L            = likelihood at your final solution
   #   g            = gradient at your final solution
   #   L.path       = neg-log-likelihoods recorded at every iteration 
-  #                  of your algorithm 
+  #                  of algorithm 
   g = append(beta, beta0)
   
   return(list(beta.hat=as.vector(beta),beta0.hat=as.numeric(beta0),L=L.cur,grad=g,L.path=L.path))
